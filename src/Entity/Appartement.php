@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Entity;
-
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use App\Repository\AppartementRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+
+#[Vich\Uploadable]
 #[ORM\Table('appartement')]
 #[ORM\Entity(repositoryClass: AppartementRepository::class)]
+
 class Appartement
 {
     #[ORM\Id]
@@ -21,11 +25,26 @@ class Appartement
     private ?string $localite = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $NbrPiéces = null;
+    private ?int $NbrPieces = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
     private ?string $Valeur = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageName = null;
+   
+    #[ORM\Column(type: Types::DATETIME_MUTABLE,nullable:true)]
+    private ?\DateTimeInterface $updatedAt = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE,nullable:true)]
+    private ?\DateTimeInterface $createdAt = null;
+    
+    #[Vich\UploadableField(mapping: 'appartementImage', fileNameProperty: 'imageName', size: 'imageSize')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $imageSize = null;
+    
     public function getNumApp(): ?int
     {
         return $this->NumApp;
@@ -61,14 +80,14 @@ class Appartement
         return $this;
     }
 
-    public function getNbrPiéces(): ?int
+    public function getNbrPieces(): ?int
     {
-        return $this->NbrPiéces;
+        return $this->NbrPieces;
     }
 
-    public function setNbrPiéces(?int $NbrPiéces): static
+    public function setNbrPieces(?int $NbrPieces): static
     {
-        $this->NbrPiéces = $NbrPiéces;
+        $this->NbrPieces = $NbrPieces;
 
         return $this;
     }
@@ -84,4 +103,65 @@ class Appartement
 
         return $this;
     }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): static
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+    public function getImageFile(): ?File
+    {
+	return $this->imageFile;
+    }
+    public function setImageFile(File $image = null)
+    {
+	$this->imageFile = $image;
+	if ($image){
+         	$this->updatedAt = new \DateTime('now');
+         	}
+
+}
+
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
+    }
+
+    public function setImageSize(?int $imageSize): static
+    {
+        $this->imageSize = $imageSize;
+
+        return $this;
+    }
+
 }

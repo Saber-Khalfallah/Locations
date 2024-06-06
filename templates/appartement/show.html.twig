@@ -1,0 +1,35 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}show appartement{% endblock %}
+
+{% block body %}
+    <h1>Appartement</h1>
+    <div class="container">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>NumApp</th>
+                <td>{{ appartement.NumApp }}</td>
+            </tr>
+            <tr>
+                <th>Localite</th>
+                <td>{{ appartement.localite }}</td>
+            </tr>
+            <tr>
+                <th>NbrPiéces</th>
+                <td>{{ appartement.NbrPieces }}</td>
+            </tr>
+            <tr>
+                <th>Valeur</th>
+                <td>{{ appartement.Valeur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_appartement_index') }}">back to list</a>
+
+    <a href="{{ path('app_appartement_edit', {'NumApp': appartement.NumApp}) }}">edit</a>
+
+    {{ include('appartement/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

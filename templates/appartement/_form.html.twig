@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+    {{ form_row(form.numApp, {'attr':{'class':'form form-control'}}) }}
+    {{ form_row(form.localite, {'attr':{'class':'form form-control'}}) }}
+    {{ form_row(form.NbrPieces, {'attr':{'class':'form form-control'}}) }}
+    {{ form_row(form.Valeur, {'attr':{'class':'form form-control'}}) }}
+    {{ form_row(form.IdProp, {'attr':{'class':'form form-control'}}) }}
+    {{ form_row(form.imageName, {'attr':{'class':'form form-control'}}) }}
+    {{ form_row(form.imageFile, {'attr':{'class':'form form-control'}}) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

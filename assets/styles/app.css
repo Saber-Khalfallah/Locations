@@ -7,3 +7,6 @@ body {
     margin-right: auto;
     margin-top: 200px;
 }
+.vich-image img{
+max-width: 300px;
+}
