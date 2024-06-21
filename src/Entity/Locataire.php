@@ -11,8 +11,8 @@ class Locataire
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(length: 255,nullable:true)]
-    private ?string $IdLoc = null;
+    #[ORM\Column(type:'integer')]
+    private ?int $IdLoc = null;
 
     #[ORM\Column(length: 255)]
     private ?string $Nom = null;
@@ -56,5 +56,11 @@ class Locataire
         $this->Prenom = $Prenom;
 
         return $this;
+    }
+    public function __toString()
+    {
+        // Return a string that represents the Locataire object.
+        // For example, if Locataire has a 'name' property, you might return it.
+        return $this->getIdLoc() ;// Adjust according to your entity's properties
     }
 }

@@ -44,6 +44,10 @@ class Appartement
 
     #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $owner = null;
     
     public function getNumApp(): ?int
     {
@@ -61,7 +65,7 @@ class Appartement
         return $this->IdProp;
     }
 
-    public function setIdProp(?int $IdProp): static
+    public function setIdProp(?Proprietaire $IdProp): static
     {
         $this->IdProp = $IdProp;
 
@@ -147,8 +151,8 @@ class Appartement
     {
 	$this->imageFile = $image;
 	if ($image){
-         	$this->updatedAt = new \DateTime('now');
-         	}
+                  	$this->updatedAt = new \DateTime('now');
+                  	}
 
 }
 
@@ -160,6 +164,25 @@ class Appartement
     public function setImageSize(?int $imageSize): static
     {
         $this->imageSize = $imageSize;
+
+     
+        return $this;
+    }
+    public function __toString()
+    {
+        // Return a string that represents the Locataire object.
+        // For example, if Locataire has a 'name' property, you might return it.
+        return $this->NumApp ;// Adjust according to your entity's properties
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): static
+    {
+        $this->owner = $owner;
 
         return $this;
     }

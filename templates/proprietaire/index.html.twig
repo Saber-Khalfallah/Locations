@@ -1,0 +1,39 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}proprietaire{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Proprietaire index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdProp</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proprietaire in proprietaires %}
+            <tr>
+                <td>{{ proprietaire.IdProp }}</td>
+                <td>{{ proprietaire.Nom }}</td>
+                <td>{{ proprietaire.Prenom }}</td>
+                <td>
+                    <a href="{{ path('app_proprietaire_show', {'IdProp': proprietaire.IdProp}) }}">show</a>
+                    <a href="{{ path('app_proprietaire_edit', {'IdProp': proprietaire.IdProp}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_proprietaire_new') }}">Create new</a>
+</div>
+{% endblock %}

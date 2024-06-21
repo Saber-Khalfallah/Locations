@@ -1,0 +1,39 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}edit proprietaire{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Location index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>DatLoc</th>
+                <th>NbrMois</th>
+                <th>Montant</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for location in locations %}
+            <tr>
+                <td>{{ location.DatLoc ? location.DatLoc|date('Y-m-d') : '' }}</td>
+                <td>{{ location.NbrMois }}</td>
+                <td>{{ location.Montant }}</td>
+                <td>
+                    <a href="{{ path('app_location_show', {'IdLoc': location.IdLoc}) }}">show</a>
+                    <a href="{{ path('app_location_edit', {'IdLoc': location.IdLoc}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_location_new') }}">Create new</a>
+</div>
+{% endblock %}

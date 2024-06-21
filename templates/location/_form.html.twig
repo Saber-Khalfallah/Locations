@@ -1,0 +1,8 @@
+{{ form_start(form) }}
+     {{ form_row(form.DatLoc, {'attr':{'class':'form form-control'}}) }}
+    {{ form_row(form.IdLoc, {'attr':{'class':'form form-control'}}) }}
+     {{ form_row(form.NumApp, {'attr':{'class':'form form-control'}}) }}
+    {{ form_row(form.NbrMois, {'attr':{'class':'form form-control'}}) }}
+     {{ form_row(form.Montant, {'attr':{'class':'form form-control'}}) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

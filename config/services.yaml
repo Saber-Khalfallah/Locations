@@ -9,7 +9,9 @@ parameters:
     app.contact.address : 'rue de paix messadine 4013'
     app.contact.phone : '+21625971082'
 services:
+
     # default configuration for services in *this* file
+    
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.

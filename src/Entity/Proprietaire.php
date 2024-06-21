@@ -44,15 +44,21 @@ class Proprietaire
         return $this;
     }
 
-    public function getPrénom(): ?string
+    public function getPrenom(): ?string
     {
         return $this->Prénom;
     }
 
-    public function setPrénom(?string $Prénom): static
+    public function setPrenom(?string $Prénom): static
     {
         $this->Prénom = $Prénom;
 
         return $this;
+    }
+    public function __toString()
+    {
+        // Return a string that represents the Locataire object.
+        // For example, if Locataire has a 'name' property, you might return it.
+        return $this->getIdProp() ;// Adjust according to your entity's properties
     }
 }

@@ -1,0 +1,13 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}new proprietaire{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Create new Proprietaire</h1>
+
+    {{ include('proprietaire/_form.html.twig') }}
+
+    <a href="{{ path('app_proprietaire_index') }}">back to list</a>
+    </div>
+{% endblock %}

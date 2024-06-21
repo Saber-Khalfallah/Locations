@@ -6,38 +6,39 @@
 
 <h1>Home Page</h1>
 <div class="container-wrap">
-		
-		
-		<div id="fh5co-work" class="fh5co-light-grey">
-			<div class="row animate-box">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Bienvenue </h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-				</div>
-			</div>
-			<div class="row">
-				{% for _appartement in appartement %}
-                
-				<div class="col-md-4 text-center animate-box">
-					<a href="work-single.html" class="work" style="background-image: url(images/portfolio-3.jpg);">
-                    <img src ="{{vich_uploader_asset(_appartement, 'imageFile')}}" style="max-width:250px" class="img-fluid-rounded work"> 
-						<div class="desc">
-							<h3>{{_appartement.localite}}</h3>
-							<span>{{_appartement.Valeur}}</span>
-                            <span> added at :{{_appartement.createdAt|ago}}</span>
-                            <span> updated at  :{{_appartement.updatedAt|ago}}</span>
-
-						</div>
-					</a>
-				</div>
-               
+    <div id="fh5co-work" class="fh5co-light-grey">
+        <div class="row animate-box">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                <h2>Bienvenue </h2>
+                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+            </div>
+        </div>
+        <div class="row">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% for _appartement in appartement %}
+                    <div class="col-md-4 text-center animate-box">
+                        <a href="work-single.html" class="work" style="background-image: url(images/portfolio-3.jpg);">
+                            <img src="{{ vich_uploader_asset(_appartement, 'imageFile') }}" style="max-width:250px" class="img-fluid-rounded work">
+                            <div class="desc">
+                                <h3>{{ _appartement.localite }}</h3>
+                                <span>{{ _appartement.Valeur }}</span>
+                                <span> added at: {{ _appartement.createdAt|ago }}</span>
+                                <span> updated at: {{ _appartement.updatedAt|ago }}</span>
+                            </div>
+                            <a href="{{ path('_app_new_show', {'id': _appartement.numApp}) }}"><span> see details</span></a>
+                        </a>
+                    </div>
                 {% endfor %}
-			</div>
-		</div>
-
-		
-
-		
-	</div><!-- END container-wrap -->
+            {% else %}
+               <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                <p>You are not logged in you cant access your appartements</p>    
+                <p><a class="btn btn-primary btn-demo" href="{{path ('app_login')}}"></i> Login </a>
+                <p>Or Register if you dont have an account </p> 
+                <p><a class="btn btn-primary btn-demo" href="{{path ('app_register')}}"></i> register </a>       
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div><!-- END container-wrap -->
 
 {% endblock %}

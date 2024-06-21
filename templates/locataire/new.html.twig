@@ -1,0 +1,13 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}appartement{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Create new Locataire</h1>
+
+    {{ include('locataire/_form.html.twig') }}
+
+    <a href="{{ path('app_locataire_index') }}">back to list</a>
+</div>
+{% endblock %}
